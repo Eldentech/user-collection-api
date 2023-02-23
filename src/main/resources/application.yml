@@ -1,0 +1,15 @@
+db:
+  jdbc-url: "jdbc:h2:file:./tmp/db"
+  user: "sa"
+  password: "password"
+spring:
+  datasource:
+    driverClassName: org.h2.Driver
+    url: "${db.jdbc-url}"
+    username: "${db.user}"
+    password: "${db.password}"
+  liquibase:
+    url: "${db.jdbc-url}"
+    user: "${db.user}"
+    password: "${db.password}"
+    enabled: true

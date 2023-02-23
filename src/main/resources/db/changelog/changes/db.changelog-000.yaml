@@ -1,0 +1,47 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-table-user
+      preConditions:
+        - onFail: MARK_RAN
+          not:
+            tableExists:
+              tableName: userdata
+      author: Rifat Dover
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  # https://webarchive.nationalarchives.gov.uk/ukgwa/20120404182414/http://umbr4.cabinetoffice.gov.uk/govtalk/schemasstandards/e-gif/datastandards/identifiers.aspx
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: user_pkey
+                  name: id
+                  type: uuid
+                  defaultValue: random_uuid()
+              - column:
+                  # https://webarchive.nationalarchives.gov.uk/ukgwa/20120404204735/http://umbr4.cabinetoffice.gov.uk/govtalk/schemasstandards/e-gif/datastandards/person_information/person_name/person_full_name.aspx
+                  constraints:
+                    nullable: false
+                  name: name
+                  type: VARCHAR(70)
+              - column:
+                  constraints:
+                    nullable: false
+                  name: sex
+                  type: TINYINT
+              - column:
+                  constraints:
+                    nullable: false
+                  name: age
+                  type: SMALLINT
+              - column:
+                  # https://webarchive.nationalarchives.gov.uk/ukgwa/20120404201644/http://umbr4.cabinetoffice.gov.uk/govtalk/schemasstandards/e-gif/datastandards/address/country_code.aspx
+                  name: country_code
+                  type: VARCHAR(3)
+              - column:
+                  name: date_created
+                  type: "timestamp with time zone"
+                  defaultValue: now()
+            tableName: userdata
+

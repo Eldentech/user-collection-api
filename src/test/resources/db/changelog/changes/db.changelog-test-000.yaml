@@ -1,0 +1,10 @@
+databaseChangeLog:
+  - changeSet:
+      id: insert-test-user-data
+      context: test
+      author: Rifat Dover
+      changes:
+        - sqlFile:
+            path: "scripts/test-data.sql"
+            relativeToChangelogFile: true
+
