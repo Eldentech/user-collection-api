@@ -36,6 +36,9 @@ public class User {
     public User(String name, Sex sex, int age, String country) {
         this(null, name, sex, age, country, null);
     }
+    public User(String id, String name, Sex sex, int age, String country) {
+        this(id, name, sex, age, country, null);
+    }
     public User(String id, String name, Sex sex, int age, String country, LocalDateTime dateCreated) {
         this.id = id;
         this.name = name;

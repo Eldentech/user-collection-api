@@ -35,9 +35,7 @@ class UserRepositoryTest {
     }
 
     private User createUser(String name, String country) {
-        User user = userRepository.save(new User(name, Sex.MALE, 39, country));
-        userRepository.flush();
-        return user;
+        return userRepository.saveAndFlush(new User(name, Sex.MALE, 39, country));
     }
 
     @Test
@@ -52,7 +50,6 @@ class UserRepositoryTest {
         User user = optionalUser.get();
         assertThat(user.getId()).isNotBlank();
         userRepository.delete(user);
-        userRepository.flush();
 
         assertThat(userRepository.findOne(userExample)).isNotPresent();
     }
@@ -62,8 +59,7 @@ class UserRepositoryTest {
         User user = createUser("First User", "TUR");
         assertThat(user).isNotNull();
         user.setName("Updated User");
-        userRepository.save(user);
-        userRepository.flush();
+        userRepository.saveAndFlush(user);
 
         Optional<User> updated = userRepository.findById(user.getId());
         assertThat(updated).isPresent();
